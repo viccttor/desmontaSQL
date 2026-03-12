@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Inspector — Chave / Valor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="site-header">
+      <div class="logo">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 3h12v2H2zm0 4h8v2H2zm0 4h10v2H2z"/>
+          </svg>
+        </div>
+        <div class="logo-copy">
+          <span class="logo-name">SQL Inspector</span>
+          <span class="logo-sub">INSERT / UPDATE → chave : valor</span>
+        </div>
+      </div>
+
+      <div class="theme-toggle" role="group" aria-label="Alternar tema">
+        <span class="theme-label" id="theme-label">escuro</span>
+        <button
+          class="theme-btn"
+          id="theme-btn"
+          title="Alternar entre tema escuro e claro"
+          aria-pressed="true"
+        ></button>
+      </div>
+    </header>
+
+    <!-- ── Input ───────────────────────────────────────────── -->
+    <section class="card" aria-label="Entrada SQL">
+      <p class="card-label">Entrada SQL</p>
+      <textarea
+        id="sql-input"
+        spellcheck="false"
+        autocomplete="off"
+        placeholder="Cole aqui seu INSERT INTO ... VALUES(...) ou UPDATE ... SET ..."
+      ></textarea>
+
+      <div class="actions">
+        <button class="btn btn--primary" id="btn-parse">Analisar</button>
+        <button class="btn btn--ghost"   id="btn-clear">Limpar</button>
+        <button class="btn btn--ghost"   id="btn-csv" hidden>
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style="margin-right:6px;flex-shrink:0" aria-hidden="true">
+            <path d="M8 12L3 7h3V2h4v5h3L8 12z"/>
+            <rect x="2" y="13" width="12" height="1.5" rx="0.75"/>
+          </svg>
+          Baixar CSV
+        </button>
+      </div>
+
+      <div class="alert alert--error" id="error-msg" role="alert" hidden></div>
+    </section>
+
+    <!-- ── Result ─────────────────────────────────────────── -->
+    <section class="card" id="output" aria-label="Resultado" hidden>
+
+      <div class="meta-bar" id="meta-bar"></div>
+
+      <div class="where-block" id="where-block" hidden></div>
+
+      <div class="toolbar">
+        <input
+          type="search"
+          class="search-input"
+          id="search-input"
+          placeholder="Filtrar por coluna ou valor…"
+          aria-label="Filtrar resultados"
+        />
+        <span class="result-count" id="result-count" aria-live="polite"></span>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Tabela de pares chave-valor" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Coluna</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <span>sql-inspector</span>
+    <span class="sep">·</span>
+    <span>github pages ready</span>
+    <span class="sep">·</span>
+    <span>nenhum dado enviado ao servidor</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
